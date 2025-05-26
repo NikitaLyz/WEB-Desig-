@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Компактна картка викладача</title>
+  <style>
+    .teacher-card {
+      display: inline-block;
+      text-align: center;
+      font-family: sans-serif;
+    }
+    .teacher-card__image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .teacher-card__name {
+      margin: 8px 0 4px;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .teacher-card__details {
+      font-size: 0.9rem;
+      color: #007bff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="teacher-card">
+    <img src="https://static.ukrinform.com/photos/2019_08/1564846281-684.jpg" alt="Фото викладача" class="teacher-card__image">
+    <div class="teacher-card__name">Іваненко Іван Іванович</div>
+
+    <a href="#" id="details-link" class="teacher-card__details">докладніше</a>
+  </div>
+
+  <script>
+    document.getElementById('details-link').addEventListener('click', function(e) {
+      e.preventDefault();
+    
+      setTimeout(function() {
+        window.location.href = 'full-teacher-card.html';
+      }, 5000);
+    });
+  </script>
+</body>
+</html>
