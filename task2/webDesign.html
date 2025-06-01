@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BuyList</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Нижній бейдж (п.1–3) */
+    .badge-fixed {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #d102d1;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+      width: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      cursor: pointer;
+      transition: transform .4s ease, background-color .4s ease;
+      z-index: 1000;
+    }
+    .badge-fixed__label { font-size: 1.1em; font-weight: bold; }
+    .badge-fixed__author {
+      opacity: 0; max-height: 0;
+      font-size: .85em; margin-top: 8px;
+      transition: opacity .3s ease .1s, max-height .3s ease .1s;
+    }
+    .badge-fixed:hover {
+      transform: translateY(-20px);
+      background: #4B005E;
+    }
+    .badge-fixed:hover .badge-fixed__author {
+      opacity: 1; max-height: 2em;
+    }
+    @media print {
+      /* ховаємо все, крім бейджа */
+      body * { visibility: hidden; }
+      .badge-fixed, .badge-fixed * { visibility: visible; }
+      .badge-fixed {
+        position: absolute; top: 20px; left: 20px;
+        background: #fff !important;
+        border: 2px solid #4B005E !important;
+        color: #4B005E !important;
+        transform: none !important;
+        width: auto !important;
+      }
+      .badge-fixed__label { display: none !important; }
+      .badge-fixed__author {
+        display: block !important;
+        opacity: 1 !important;
+        max-height: none !important;
+      }
+    }
+
+    /* ——— Кастомні підказки ——— */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px) scale(0.8); }
+      to   { opacity: 1; transform: translateY(0)    scale(1);   }
+    }
+    @keyframes fadeOutDown {
+      from { opacity: 1; transform: translateY(0)    scale(1);   }
+      to   { opacity: 0; transform: translateY(8px) scale(0.8); }
+    }
+
+    .tooltip.custom-tooltip .tooltip-inner {
+      background-color: #4B005E !important;
+      color:              #fff     !important;
+      border-radius:      0.5rem   !important;
+      padding:            0.25rem  0.5rem  !important;
+      transform-origin:   bottom center;
+      opacity:            0;
+      transform:          translateY(8px) scale(0.8);
+      transition:         none;
+    }
+    .tooltip.custom-tooltip.show .tooltip-inner {
+      animation: fadeInUp 0.3s forwards;
+    }
+    .tooltip.custom-tooltip.hide .tooltip-inner {
+      animation: fadeOutDown 0.2s forwards;
+    }
+    .tooltip.custom-tooltip .tooltip-arrow::before {
+      background-color: #4B005E !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container py-4">
+    <div class="row gx-4">
+      <!-- Ліва колонка -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header fw-bold">Додати товар</div>
+          <div class="card-body">
+
+            <!-- Форма додавання -->
+            <div class="input-group mb-3">
+              <input id="new-item" type="text" class="form-control" placeholder="Назва товару">
+              <button id="add-btn" class="btn btn-primary" data-tooltip="Додати товар">Додати</button>
+            </div>
+
+            <!-- Список TODO -->
+            <ul id="todo-list" class="list-group">
+              <!-- Приклад статичних рядків: -->
+              <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span class="text-decoration-line-through">Помідори</span>
+                <div class="d-flex align-items-center">
+                  <button class="btn btn-sm btn-danger me-1" data-tooltip="Зменшити кількість">−</button>
+                  <span class="badge bg-secondary text-dark me-1">2</span>
+                  <button class="btn btn-sm btn-success me-3" data-tooltip="Збільшити кількість">+</button>
+                  <button class="btn btn-sm btn-secondary me-1" data-tooltip="Позначити як не куплено">Не куплено</button>
+                  <button class="btn btn-sm btn-danger" data-tooltip="Видалити">×</button>
+                </div>
+              </li>
+              <li class="list-group-item d-flex align-items-center justify-content-between">
+                <span>Печиво</span>
+                <div class="d-flex align-items-center">
+                  <button class="btn btn-sm btn-danger me-1" data-tooltip="Зменшити кількість">−</button>
+                  <span class="badge bg-secondary text-dark me-1">2</span>
+                  <button class="btn btn-sm btn-success me-3" data-tooltip="Збільшити кількість">+</button>
+                  <button class="btn btn-sm btn-secondary me-1" data-tooltip="Позначити як куплено">Куплено</button>
+                  <button class="btn btn-sm btn-danger" data-tooltip="Видалити">×</button>
+                </div>
+              </li>
+              <!-- і так далі... -->
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Права колонка -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm mb-3">
+          <div class="card-header fw-bold">Залишилося</div>
+          <div class="card-body">
+            <!-- Pill-бейджі -->
+            <span class="badge bg-secondary text-dark me-1">
+              Печиво <span class="badge bg-warning text-dark">2</span>
+            </span>
+            <span class="badge bg-secondary text-dark me-1">
+              Сир <span class="badge bg-warning text-dark">1</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="card shadow-sm">
+          <div class="card-header fw-bold">Куплено</div>
+          <div class="card-body">
+            <span class="badge bg-secondary text-dark me-1">
+              <s>Помідори</s> <span class="badge bg-warning text-dark">2</span>
+            </span>
+            <!-- інші куплені... -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Нижній бейдж -->
+  <div class="badge-fixed" data-author="Нікіта">
+    <span class="badge-fixed__label">BuyList</span>
+    <span class="badge-fixed__author">Created by: Нікіта</span>
+  </div>
+
+  <!-- Bootstrap + Tooltip скрипт -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Ініціалізація кастомних підказок
+    document.querySelectorAll('[data-tooltip]').forEach(el => {
+      new bootstrap.Tooltip(el, {
+        title:       el.getAttribute('data-tooltip'),
+        placement:   'top',
+        trigger:     'hover',
+        customClass: 'custom-tooltip'
+      });
+    });
+    // Ваш JS для керування списками тут...
+  </script>
+</body>
+</html>
