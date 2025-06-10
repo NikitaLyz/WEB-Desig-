@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BuyList</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="ссф.css" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container py-4">
+    <div class="row gx-4">
+      <!-- Ліва колонка: Додати товар -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header fw-bold">Додати товар</div>
+          <div class="card-body">
+            <!-- Форма додавання -->
+            <div class="input-group mb-3">
+              <input id="new-item" type="text" class="form-control" placeholder="Назва товару">
+              <button id="add-btn" class="btn btn-primary" data-tooltip="Додати товар">Додати</button>
+            </div>
+
+            <ul id="todo-list" class="list-group"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Права колонка: Залишилося / Куплено -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm mb-3">
+          <div class="card-header fw-bold">Залишилося</div>
+          <div class="card-body" id="stats-not-bought"></div>
+        </div>
+
+        <div class="card shadow-sm">
+          <div class="card-header fw-bold">Куплено</div>
+          <div class="card-body" id="stats-bought"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Нижній бейдж -->
+  <div class="badge-fixed" data-author="Нікіта">
+    <span class="badge-fixed__label">BuyList</span>
+    <span class="badge-fixed__author">Created by: Нікіта</span>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="іфіф.js"></script>
+</body>
+</html>
