@@ -1,0 +1,187 @@
+/* Нижній бейдж */
+.badge-fixed {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #d102d1;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: transform .4s ease, background-color .4s ease;
+  z-index: 1000;
+}
+.badge-fixed__label {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.badge-fixed__author {
+  opacity: 0;
+  max-height: 0;
+  font-size: .85em;
+  margin-top: 8px;
+  transition: opacity .3s ease .1s, max-height .3s ease .1s;
+}
+.badge-fixed:hover {
+  transform: translateY(-20px);
+  background: #4B005E;
+}
+.badge-fixed:hover .badge-fixed__author {
+  opacity: 1;
+  max-height: 2em;
+}
+
+/* ===========================
+   Секція для друку (PRINT)
+   =========================== */
+@page {
+  margin: 10mm;
+}
+@media print {
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .container,
+  .container * {
+    visibility: visible;
+  }
+  .container {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  .card {
+    box-shadow: none !important;
+  }
+  .row,
+  .row > [class*="col"] {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+  }
+  .col-md-6 {
+    display: block !important;
+    float: none !important;
+    width: 50% !important;
+    max-width: 50% !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .col-md-6 .card {
+    margin: 0 5px 10px 5px !important;
+  }
+  .col-md-6 .card {
+    margin-bottom: 10px !important;
+  }
+  .badge-fixed,
+  .badge-fixed * {
+    visibility: visible;
+  }
+  .badge-fixed {
+    position: static !important;
+    margin: 20px auto 0 !important;
+    background: #fff !important;
+    border: 2px solid #4B005E !important;
+    color: #4B005E !important;
+    transform: none !important;
+    width: auto !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .badge-fixed__label {
+    display: none !important;
+  }
+  .badge-fixed__author {
+    display: block !important;
+    opacity: 1 !important;
+    max-height: none !important;
+    margin-top: 0 !important;
+  }
+}
+
+/* ===============================
+   Медiа-запити для адаптиву
+   =============================== */
+@media (max-width: 500px) {
+  .col-md-6 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+}
+@media (min-width: 500px) {
+  .col-md-6 {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+  }
+}
+
+/* ================
+   Tooltip Styles
+   ================ */
+.tooltip-violet .tooltip-inner {
+  background-color: #4B005E !important;
+  color: #fff !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem !important;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: bottom center;
+}
+.tooltip-violet .tooltip-inner {
+  opacity: 0;
+  transform: scale(0.8) translateY(5px);
+}
+.tooltip-violet.show .tooltip-inner {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+.tooltip-violet .tooltip-arrow::before {
+  border-top-color: #4B005E !important;
+  border-right-color: #4B005E !important;
+  border-bottom-color: #4B005E !important;
+  border-left-color: #4B005E !important;
+}
+
+/* ================
+   Кнопки та лічильник
+   ================ */
+.quantity-box {
+  min-width: 2rem;
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  background: #f8f9fa;
+  color: #495057;
+  font-weight: 500;
+}
+.quantity-box.purchased {
+  background: #e9ecef;
+  color: #6c757d;
+  border-color: #ced4da;
+}
+.item-name {
+  cursor: pointer;
+}
+.item-name.purchased {
+  text-decoration: line-through;
+  color: #6c757d;
+  cursor: default;
+}
