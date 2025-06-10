@@ -1,4 +1,4 @@
-// --- script.js ---
+// ---aa script.js ---
 
 // Ключ у localStorage для збереження стану
 const STORAGE_KEY = 'buyListItems';
