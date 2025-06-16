@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Online Book Library</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="logo">Online Book Library</h1>
+      <!-- Кнопки, що бачимо тільки на мобайлі -->
+      <div class="mobile-controls">
+        <button class="btn filter-toggle">Filter</button>
+        <button class="btn sort-toggle">Sort ▼</button>
+      </div>
+      <!-- Sign In тільки на десктопі -->
+      <button class="btn sign-in">Sign In</button>
+    </div>
+  </header>
+
+  <div class="main-wrapper">
+    <!-- Сайдбар із фільтрами -->
+    <aside class="sidebar">
+      <h2>Filter</h2>
+      <div class="filter-group">
+        <h3>Genre</h3>
+        <label><input type="checkbox" checked> Roman</label>
+        <label><input type="checkbox" checked> Non‑Fiction</label>
+      </div>
+      <div class="filter-group">
+        <h3>Author</h3>
+        <input type="text" placeholder="Enter author">
+      </div>
+      <div class="filter-group">
+        <h3>Year</h3>
+        <label><input type="checkbox"> 1900</label>
+        <label><input type="checkbox"> 2024</label>
+      </div>
+      <div class="filter-group">
+        <h3>Language</h3>
+        <label><input type="checkbox" checked> English</label>
+        <label><input type="checkbox"> Українська</label>
+      </div>
+    </aside>
+
+    <!-- Основний контент -->
+    <main class="content">
+      <div class="section-header">
+        <h2>Featured Books</h2>
+        <!-- Додатковий селект сортування для десктопу -->
+        <div class="sort-desktop">
+          <label for="sort">Sort by:</label>
+          <select id="sort">
+            <option>Popularity</option>
+            <option>Year: newest</option>
+            <option>Year: oldest</option>
+          </select>
+        </div>
+      </div>
+
+      <ul class="book-grid">
+        <li class="book-card">
+          <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9780743273565/the-great-gatsby-9780743273565_hr.jpg" alt="The Great Gatsby">
+          <h3>The Great Gatsby</h3>
+          <p>E. Scott Fitzgerald</p>
+        </li>
+        <li class="book-card">
+          <img src="https://cdn2.penguin.com.au/covers/original/9781784870799.jpg" alt="To Kill a Mockingbird">
+          <h3>To Kill a Mockingbird</h3>
+          <p>Harper Lee</p>
+        </li>
+        <li class="book-card">
+          <img src="https://th.bing.com/th/id/OIP.8bTpGDLEYVpDlV8tD10XlQAAAA?rs=1&pid=ImgDetMain" alt="1984">
+          <h3>1984</h3>
+          <p>George Orwell</p>
+        </li>
+        <li class="book-card">
+          <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1653368758i/61157632.jpg" alt="Pride and Prejudice">
+          <h3>Pride and Prejudice</h3>
+          <p>Jane Austen</p>
+        </li>
+     
+      </ul>
+    </main>
+  </div>
+
+</body>
+</html>
